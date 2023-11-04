@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "sm-europa-store-app",
-    "slug": "sm-europa-store-app",
+    "name": "Supermercado Europa",
+    "slug": "europa-preview",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": ["**/*"],
@@ -27,8 +27,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "3bb57f0c-649c-4332-84f8-cd3d0222cafa"
+        "projectId": "acfad0bb-8bd4-4efe-b1a3-a6551d93b7b4"
       }
-    }
+    },
+    "owner": "vineckb"
   }
 }

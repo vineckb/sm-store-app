@@ -1,5 +1,5 @@
-import { MenuButton, Tab, Tabs, Container } from "./styles";
-import Icon from "@expo/vector-icons/MaterialIcons";
+import { Tab, Tabs, Container } from "./styles";
+import { SectionsMenuButton } from "../SectionsMenuButton";
 
 export function SectionsTabs() {
   const data = [
@@ -12,9 +12,7 @@ export function SectionsTabs() {
 
   return (
     <Container>
-      <MenuButton>
-        <Icon name="menu" color="white" size={28} />
-      </MenuButton>
+      <SectionsMenuButton />
       <Tabs
         horizontal
         data={data}

@@ -1,10 +1,10 @@
-import { Box, Image } from "native-base";
-import { Logo } from "../Logo";
+import { Box, View } from "native-base";
+import { PropsWithChildren } from "react";
+import styled from "styled-components";
 
-export function AppBar() {
-  return (
-    <Box bgColor="#E40613">
-      <Logo />
-    </Box>
-  );
-}
+export const AppBar = styled(View)`
+  background-color: #e40613;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
