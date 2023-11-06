@@ -1,6 +1,5 @@
-import { Dimensions } from "react-native";
 import { Product } from "../../types";
-import { Box, HStack, Text, VStack, View } from "native-base";
+import { Text, VStack } from "native-base";
 import {
   Footer,
   Image,
@@ -15,10 +14,9 @@ import { formatCurrency } from "../../helpers/currency";
 
 export interface ProductCardProps {
   data: Product;
-  index: number;
 }
 
-export function ProductCard({ data, index }: ProductCardProps) {
+export function ProductCard({ data }: ProductCardProps) {
   return (
     <Wrapper style={{ elevation: 2 }}>
       <ImageContainer>
@@ -30,14 +28,16 @@ export function ProductCard({ data, index }: ProductCardProps) {
       </ImageContainer>
       <Title>{data.title}</Title>
       <VStack>
-        {!!data.promotionalPrice && (
+        {data.promotionalPrice > 0 && (
           <>
             <StripedPrice>{formatCurrency(data.price)}</StripedPrice>
             <Price>{formatCurrency(data.promotionalPrice)}</Price>
           </>
         )}
 
-        {!data.promotionalPrice && <Price>{formatCurrency(data.price)}</Price>}
+        {(!data.promotionalPrice || data.promotionalPrice <= 0) && (
+          <Price>{formatCurrency(data.price)}</Price>
+        )}
       </VStack>
       <Footer>
         <AddToCartButton />

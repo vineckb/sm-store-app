@@ -4,10 +4,11 @@ import { AppBar } from "../../components/AppBar";
 import { SectionsTabs } from "../../components/SectionsTabs";
 import { Logo } from "../../components/Logo";
 import { AntDesign } from "@expo/vector-icons";
+import { FeaturedSections } from "./FeaturedSections";
 
 export function Home() {
   return (
-    <VStack>
+    <VStack bg="red" flex={1}>
       <AppBar>
         <Logo />
 
@@ -20,10 +21,7 @@ export function Home() {
         <IconButton icon={<AntDesign name="user" color="white" size={24} />} />
       </AppBar>
       <SectionsTabs />
-      <FlatList
-        data={Array.from({ length: 8 })}
-        renderItem={({ index }) => <OffersList key={`all-${index}`} />}
-      />
+      <FeaturedSections />
     </VStack>
   );
 }

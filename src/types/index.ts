@@ -10,3 +10,9 @@ export interface Product {
   promotionalPrice: number;
   imageUrl: string;
 }
+
+export interface Section {
+  title: string;
+  id: number | string;
+  products: Product[];
+}
