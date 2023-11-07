@@ -10,7 +10,7 @@ export function SectionsMenuButton() {
       <MenuButton onPress={onOpen}>
         <Icon name="menu" color="white" size={28} />
       </MenuButton>
-      {isOpen && <SideNav isOpen={isOpen} onClose={onClose} />}
+      <SideNav isOpen={isOpen} onClose={onClose} />
     </>
   );
 }

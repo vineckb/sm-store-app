@@ -5,6 +5,7 @@ import { SectionsTabs } from "../../components/SectionsTabs";
 import { Logo } from "../../components/Logo";
 import { AntDesign } from "@expo/vector-icons";
 import { FeaturedSections } from "./FeaturedSections";
+import { FloatingCart } from "../../components/FloatingCart";
 
 export function Home() {
   return (
@@ -22,6 +23,7 @@ export function Home() {
       </AppBar>
       <SectionsTabs />
       <FeaturedSections />
+      <FloatingCart />
     </VStack>
   );
 }

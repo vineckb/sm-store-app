@@ -27,7 +27,7 @@ export function ProductCard({ data }: ProductCardProps) {
         />
       </ImageContainer>
       <Title>{data.title}</Title>
-      <VStack>
+      <VStack mt="auto">
         {data.promotionalPrice > 0 && (
           <>
             <StripedPrice>{formatCurrency(data.price)}</StripedPrice>

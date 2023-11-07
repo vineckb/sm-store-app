@@ -31,6 +31,6 @@ export const Price = styled(Text)`
 `;
 
 export const Footer = styled(View)`
-  margin-top: auto;
+  margin-top: 5px;
   margin-bottom: 0;
 `;

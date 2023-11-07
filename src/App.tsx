@@ -1,12 +1,15 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { Home } from "./screens/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { NativeBaseProvider, StatusBar } from "native-base";
+import { NativeBaseProvider, StatusBar, View } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Cart } from "./screens/Cart";
 import { SignIn } from "./screens/SignIn";
 import { Search } from "./screens/Search";
+import { setTopLevelNavigator } from "./services/navigator";
+import { Section } from "./screens/Section";
+import { StackParamList } from "./types";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,7 +19,7 @@ export const queryClient = new QueryClient({
   },
 });
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<StackParamList>();
 
 export function App() {
   return (
@@ -25,12 +28,33 @@ export function App() {
         <StatusBar backgroundColor="#E40613" barStyle="light-content" />
 
         <QueryClientProvider client={queryClient}>
-          <NavigationContainer>
-            <Stack.Navigator initialRouteName="Catalog">
+          <NavigationContainer
+            ref={(navigatorRef) => {
+              setTopLevelNavigator(navigatorRef);
+            }}
+          >
+            <Stack.Navigator
+              initialRouteName="Catalog"
+              screenOptions={{
+                navigationBarColor: "#E40613",
+                headerStyle: {
+                  backgroundColor: "#E40613",
+                },
+                headerTintColor: "#fff",
+              }}
+            >
               <Stack.Screen
                 name="Catalog"
                 component={Home}
                 options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Section"
+                component={Section}
+                options={{
+                  headerShown: true,
+                  title: "Carregando...",
+                }}
               />
               <Stack.Screen
                 name="Search"

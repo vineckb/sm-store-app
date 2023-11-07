@@ -7,7 +7,7 @@ export interface ButtonProps {
 
 export const Button = styled(Text)<ButtonProps>`
   text-transform: uppercase;
-  background: ${({ isPressed }) => (isPressed ? "#98252B" : "#E40613")};
+  background: ${({ isPressed }) => (isPressed ? "#5b282b" : "#E40613")};
   color: #fff;
   border-radius: 5px;
   padding: 9px;
