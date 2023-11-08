@@ -22,7 +22,7 @@ export function Home() {
         <IconButton icon={<AntDesign name="user" color="white" size={24} />} />
       </AppBar>
       <SectionsTabs />
-      <FeaturedSections />
+      <OffersList />
       <FloatingCart />
     </VStack>
   );

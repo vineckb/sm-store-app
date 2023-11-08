@@ -12,15 +12,6 @@ export function useFetchOffers() {
   });
 }
 
-export function useFetchFeaturedSections() {
-  return useQuery({
-    queryKey: ["featured-sections"],
-    queryFn: (): Promise<AxiosResponse<Section[]>> =>
-      api.get("/catalog/featured-sections"),
-    select: (response) => response.data,
-  });
-}
-
 export function useFetchSections() {
   return useQuery({
     queryKey: ["sections"],

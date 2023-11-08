@@ -1,9 +1,15 @@
 export type ID = string | number;
 
-export interface Offer {
-  id: number;
-  title: string;
-  products: Product[];
+export interface CartProduct {
+  price: number;
+  quantity: number;
+}
+
+export interface CartResource {
+  id: ID;
+  products: {
+    [key: ID]: CartProduct;
+  };
 }
 
 export interface Product {
@@ -18,20 +24,6 @@ export interface Section {
   title: string;
   id: ID;
   products: Product[];
-}
-
-export interface OrderProduct {
-  id?: ID;
-  productId: ID;
-  price: number;
-  quantity: number;
-  title: string;
-  imageUrl: string;
-}
-
-export interface Order {
-  id: ID;
-  products: OrderProduct[];
 }
 
 export type StackParamList = {

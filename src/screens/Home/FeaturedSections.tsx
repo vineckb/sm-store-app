@@ -19,6 +19,7 @@ export function FeaturedSections() {
   return (
     <FlatList
       data={data}
+      initialNumToRender={3}
       renderItem={({ item }) => (
         <HorizontalProductsList
           key={`section-${item.id}`}
@@ -26,6 +27,9 @@ export function FeaturedSections() {
           data={item.products as Product[]}
         />
       )}
+      contentContainerStyle={{
+        paddingBottom: 60,
+      }}
     />
   );
 }

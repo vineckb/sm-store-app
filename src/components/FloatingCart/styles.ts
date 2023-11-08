@@ -5,5 +5,6 @@ export const Wrapper = styled(HStack)`
   position: absolute;
   bottom: 0;
   background: white;
-  width: 100vw;
+  width: 100%;
+  height: 50px;
 `;

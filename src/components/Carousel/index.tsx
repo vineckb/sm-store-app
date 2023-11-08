@@ -1,11 +1,11 @@
-import React, { useCallback } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import React from "react";
+import { FlatList } from "react-native";
 
 const gap = 20;
 
 export interface CarouselProps {
-  data: T[];
-  renderItem: (data: { index: number; item: T }) => React.ReactElement;
+  data: any[];
+  renderItem: (data: { index: number; item: any }) => React.ReactElement;
 }
 
 export function Carousel({ data, renderItem }: CarouselProps) {
@@ -16,6 +16,7 @@ export function Carousel({ data, renderItem }: CarouselProps) {
       horizontal
       showsHorizontalScrollIndicator={false}
       bounces={false}
+      initialNumToRender={5}
       contentContainerStyle={{
         gap,
         paddingVertical: 5,

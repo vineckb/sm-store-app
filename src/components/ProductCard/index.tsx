@@ -1,5 +1,5 @@
 import { Product } from "../../types";
-import { Text, VStack } from "native-base";
+import { VStack } from "native-base";
 import {
   Footer,
   Image,
@@ -9,8 +9,8 @@ import {
   Title,
   Wrapper,
 } from "./styles";
-import { AddToCartButton } from "../AddToCartButton";
 import { formatCurrency } from "../../helpers/currency";
+import { CartActions } from "../CartActions";
 
 export interface ProductCardProps {
   data: Product;
@@ -21,6 +21,7 @@ export function ProductCard({ data }: ProductCardProps) {
     <Wrapper style={{ elevation: 2 }}>
       <ImageContainer>
         <Image
+          // @ts-ignore
           source={{ uri: process.env.EXPO_PUBLIC_API_URL + data.imageUrl }}
           alt={data.title}
           resizeMode="center"
@@ -40,7 +41,7 @@ export function ProductCard({ data }: ProductCardProps) {
         )}
       </VStack>
       <Footer>
-        <AddToCartButton />
+        <CartActions product={data} />
       </Footer>
     </Wrapper>
   );

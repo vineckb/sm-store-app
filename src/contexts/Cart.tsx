@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ID, OrderProduct } from "../types";
+import { CartProduct, ID } from "../types";
 
 interface CartContextType {
   totalPrice: string;
@@ -16,13 +16,10 @@ interface CartContextType {
   orderId?: ID;
   setOrderId: (orderId: ID) => void;
 
-  products: { [key: ID]: OrderProduct };
-  add: (
-    product: Omit<OrderProduct, "quantity"> & { promotionalPrice?: number },
-    quantity?: number
-  ) => void;
-  updateQuantity: (id: ID, quantity: number) => void;
-  remove: (id: ID) => void;
+  products: { [key: ID]: CartProduct };
+  add: (productId: ID, price: number) => void;
+  updateQuantity: (productId: ID, quantity: number) => void;
+  remove: (productId: ID) => void;
 }
 
 export const CartContext = createContext<CartContextType>(

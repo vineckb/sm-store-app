@@ -10,6 +10,7 @@ import { Search } from "./screens/Search";
 import { setTopLevelNavigator } from "./services/navigator";
 import { Section } from "./screens/Section";
 import { StackParamList } from "./types";
+import { CartProvider } from "./providers/Cart";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,45 +34,47 @@ export function App() {
               setTopLevelNavigator(navigatorRef);
             }}
           >
-            <Stack.Navigator
-              initialRouteName="Catalog"
-              screenOptions={{
-                navigationBarColor: "#E40613",
-                headerStyle: {
-                  backgroundColor: "#E40613",
-                },
-                headerTintColor: "#fff",
-              }}
-            >
-              <Stack.Screen
-                name="Catalog"
-                component={Home}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="Section"
-                component={Section}
-                options={{
-                  headerShown: true,
-                  title: "Carregando...",
+            <CartProvider>
+              <Stack.Navigator
+                initialRouteName="Catalog"
+                screenOptions={{
+                  navigationBarColor: "#E40613",
+                  headerStyle: {
+                    backgroundColor: "#E40613",
+                  },
+                  headerTintColor: "#fff",
                 }}
-              />
-              <Stack.Screen
-                name="Search"
-                component={Search}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="Cart"
-                component={Cart}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="SignIn"
-                component={SignIn}
-                options={{ headerShown: false }}
-              />
-            </Stack.Navigator>
+              >
+                <Stack.Screen
+                  name="Catalog"
+                  component={Home}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="Section"
+                  component={Section}
+                  options={{
+                    headerShown: true,
+                    title: "Carregando...",
+                  }}
+                />
+                <Stack.Screen
+                  name="Search"
+                  component={Search}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="Cart"
+                  component={Cart}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="SignIn"
+                  component={SignIn}
+                  options={{ headerShown: false }}
+                />
+              </Stack.Navigator>
+            </CartProvider>
           </NavigationContainer>
         </QueryClientProvider>
       </NativeBaseProvider>
