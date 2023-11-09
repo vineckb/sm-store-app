@@ -1,15 +1,24 @@
 import Icon from "@expo/vector-icons/AntDesign";
-import { Wrapper } from "./styles";
+import { Container, Subtotal, ViewCartButton, Wrapper } from "./styles";
 import { useCart } from "../../hooks/useCart";
-import { Text } from "native-base";
+import config from "../../config";
 
 export function FloatingCart() {
-  const { totalPrice } = useCart();
+  const { totalPrice, products } = useCart();
+
+  if (!Object.keys(products).length) return null;
 
   return (
     <Wrapper>
-      <Icon name="shoppingcart" />
-      <Text>{totalPrice}</Text>
+      <Container>
+        <Icon
+          name="shoppingcart"
+          size={30}
+          color={config.color.primary.default}
+        />
+        <Subtotal>{totalPrice}</Subtotal>
+        <ViewCartButton>VER CARRINHO</ViewCartButton>
+      </Container>
     </Wrapper>
   );
 }

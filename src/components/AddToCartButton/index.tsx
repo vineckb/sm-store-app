@@ -13,5 +13,5 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
     add(product.id, product.promotionalPrice || product.price);
   }
 
-  return <Button onPress={handlePress}>Comprar</Button>;
+  return <Button onPress={handlePress}>COMPRAR</Button>;
 }

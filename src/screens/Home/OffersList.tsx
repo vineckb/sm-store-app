@@ -46,7 +46,7 @@ export function OffersList() {
           gap: 30,
           paddingTop: 20,
           justifyContent: "center",
-          paddingBottom: 60,
+          paddingBottom: 100,
         }}
         maxToRenderPerBatch={6}
         getItemLayout={getItemLayout}
