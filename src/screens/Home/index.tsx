@@ -6,6 +6,7 @@ import { Logo } from "../../components/Logo";
 import { AntDesign } from "@expo/vector-icons";
 import { FeaturedSections } from "./FeaturedSections";
 import { FloatingCart } from "../../components/FloatingCart";
+import { navigate } from "../../services/navigator";
 
 export function Home() {
   return (
@@ -18,6 +19,7 @@ export function Home() {
           mr={0}
           ml="auto"
           rounded="full"
+          onPress={() => navigate("Search")}
         />
         <IconButton icon={<AntDesign name="user" color="white" size={24} />} />
       </AppBar>
