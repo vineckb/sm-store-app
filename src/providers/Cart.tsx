@@ -6,39 +6,35 @@ import {
   useState,
 } from "react";
 import { CartContext } from "../contexts/Cart";
-import { CartProduct, CartResource, ID } from "../types";
-import { api } from "../services/api";
-import { AxiosResponse } from "axios";
+import { CartProduct, CartResource, ID, Product } from "../types";
+// import { api } from "../services/api";
+// import { AxiosResponse } from "axios";
 import { formatCurrency } from "../helpers/currency";
 
 export function CartProvider({ children }: PropsWithChildren) {
-  const [products, setProducts] = useState<{
-    [key: ID]: CartProduct;
-  }>({});
+  const [products, setProducts] = useState<CartProduct[]>([]);
   const [orderId, setOrderId] = useState<ID>();
   const [isLoading, setLoading] = useState<boolean>(true);
   const [isFetching, setFetching] = useState<boolean>(false);
   const [isSubmiting, setSubmiting] = useState<boolean>(false);
 
-  const totalPrice = useMemo(() => {
-    return formatCurrency(
-      Object.keys(products).reduce((acc, curr) => {
-        const product = products[curr];
-
-        return acc + product.price * product.quantity;
-      }, 0)
-    );
-  }, [products]);
+  const totalPrice = useMemo(
+    () =>
+      products.reduce((acc, curr) => {
+        return acc + (curr.promotionalPrice || curr.price) * curr.quantity;
+      }, 0),
+    [products]
+  );
 
   const add = useCallback(
-    (productId: ID, price: number) => {
-      setProducts({
+    (product: Product) => {
+      setProducts([
         ...products,
-        [productId]: {
-          price,
+        {
+          ...product,
           quantity: 1,
         },
-      });
+      ]);
     },
     [products]
   );
@@ -60,13 +56,11 @@ export function CartProvider({ children }: PropsWithChildren) {
 
   const updateQuantity = useCallback(
     (id: ID, quantity: number) => {
-      setProducts({
-        ...products,
-        [id]: {
-          ...products[id],
-          quantity,
-        },
-      });
+      setProducts(
+        products.map((product) =>
+          product.id === id ? { ...product, quantity } : product
+        )
+      );
     },
     [products]
   );
@@ -74,8 +68,7 @@ export function CartProvider({ children }: PropsWithChildren) {
   const remove = useCallback(
     (productId: ID) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { [productId]: _, ...rest } = products;
-      setProducts(rest);
+      setProducts(products.filter((product) => product.id !== productId));
     },
     [products]
   );

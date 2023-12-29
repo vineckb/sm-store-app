@@ -1,8 +1,8 @@
 import { createContext } from "react";
-import { CartProduct, ID } from "../types";
+import { CartProduct, ID, Product } from "../types";
 
 interface CartContextType {
-  totalPrice: string;
+  totalPrice: number;
 
   isLoading: boolean;
   setLoading: (isLoading: boolean) => void;
@@ -16,8 +16,8 @@ interface CartContextType {
   orderId?: ID;
   setOrderId: (orderId: ID) => void;
 
-  products: { [key: ID]: CartProduct };
-  add: (productId: ID, price: number) => void;
+  products: CartProduct[];
+  add: (product: Product) => void;
   updateQuantity: (productId: ID, quantity: number) => void;
   remove: (productId: ID) => void;
 }

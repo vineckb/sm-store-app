@@ -10,7 +10,7 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
   const { add } = useCart();
 
   function handlePress() {
-    add(product.id, product.promotionalPrice || product.price);
+    add(product);
   }
 
   return <Button onPress={handlePress}>COMPRAR</Button>;

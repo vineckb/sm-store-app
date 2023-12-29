@@ -1,4 +1,4 @@
-import { Product } from "../../types";
+import { CartProduct } from "../../types";
 import { VStack } from "native-base";
 import {
   Footer,
@@ -13,7 +13,7 @@ import { formatCurrency } from "../../helpers/currency";
 import { CartActions } from "../CartActions";
 
 export interface ProductCardProps {
-  data: Product;
+  data: CartProduct;
 }
 
 export function ProductCard({ data }: ProductCardProps) {
@@ -27,7 +27,9 @@ export function ProductCard({ data }: ProductCardProps) {
           resizeMode="center"
         />
       </ImageContainer>
-      <Title>{data.title}</Title>
+      <Title>
+        {`${data.quantity}`} - {data.title}
+      </Title>
       <VStack mt="auto">
         {data.promotionalPrice > 0 && (
           <>

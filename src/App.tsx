@@ -66,7 +66,7 @@ export function App() {
                 <Stack.Screen
                   name="Cart"
                   component={Cart}
-                  options={{ headerShown: false }}
+                  options={{ headerShown: true, title: "Carrinho de compras" }}
                 />
                 <Stack.Screen
                   name="SignIn"

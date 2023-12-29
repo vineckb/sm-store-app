@@ -1,15 +1,12 @@
 export type ID = string | number;
 
-export interface CartProduct {
-  price: number;
+export interface CartProduct extends Product {
   quantity: number;
 }
 
 export interface CartResource {
   id: ID;
-  products: {
-    [key: ID]: CartProduct;
-  };
+  products: CartProduct[];
 }
 
 export interface Product {

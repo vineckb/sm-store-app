@@ -1,18 +1,7 @@
 import { useFetchOffers } from "../../hooks/catalog";
 
-import { Product } from "../../types";
+import { HStack, Skeleton, VStack } from "native-base";
 import { HorizontalProductsList } from "../../components/HorizontalProductsList";
-import { FlatList, HStack, Skeleton, VStack } from "native-base";
-import { ProductCard } from "../../components/ProductCard";
-
-const renderItem = ({ item }: { item: Product }) => <ProductCard data={item} />;
-const keyExtractor = (_: any, index: number) => "product-" + index;
-
-const getItemLayout = (_: any, index: number) => ({
-  length: 160,
-  offset: 160 * Math.ceil(index / 2),
-  index,
-});
 
 export function OffersList() {
   const { data, isLoading } = useFetchOffers();
@@ -31,26 +20,6 @@ export function OffersList() {
     );
   }
 
-  return (
-    data && (
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        numColumns={2}
-        columnWrapperStyle={{
-          gap: 10,
-          justifyContent: "space-around",
-        }}
-        contentContainerStyle={{
-          gap: 30,
-          paddingTop: 20,
-          justifyContent: "center",
-          paddingBottom: 100,
-        }}
-        maxToRenderPerBatch={6}
-        getItemLayout={getItemLayout}
-      />
-    )
-  );
+  if (!data) return null;
+  return <HorizontalProductsList title="Ofertas do dia" data={data} />;
 }

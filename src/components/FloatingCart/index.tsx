@@ -2,6 +2,8 @@ import Icon from "@expo/vector-icons/AntDesign";
 import { Container, Subtotal, ViewCartButton, Wrapper } from "./styles";
 import { useCart } from "../../hooks/useCart";
 import config from "../../config";
+import { navigate } from "../../services/navigator";
+import { formatCurrency } from "../../helpers/currency";
 
 export function FloatingCart() {
   const { totalPrice, products } = useCart();
@@ -16,8 +18,10 @@ export function FloatingCart() {
           size={30}
           color={config.color.primary.default}
         />
-        <Subtotal>{totalPrice}</Subtotal>
-        <ViewCartButton>VER CARRINHO</ViewCartButton>
+        <Subtotal>{formatCurrency(totalPrice)}</Subtotal>
+        <ViewCartButton onPress={() => navigate("Cart")}>
+          VER CARRINHO
+        </ViewCartButton>
       </Container>
     </Wrapper>
   );
