@@ -27,9 +27,7 @@ export function ProductCard({ data }: ProductCardProps) {
           resizeMode="center"
         />
       </ImageContainer>
-      <Title>
-        {`${data.quantity}`} - {data.title}
-      </Title>
+      <Title>{data.title}</Title>
       <VStack mt="auto">
         {data.promotionalPrice > 0 && (
           <>

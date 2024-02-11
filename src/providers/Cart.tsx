@@ -6,35 +6,31 @@ import {
   useState,
 } from "react";
 import { CartContext } from "../contexts/Cart";
-import { CartProduct, CartResource, ID, Product } from "../types";
-// import { api } from "../services/api";
-// import { AxiosResponse } from "axios";
-import { formatCurrency } from "../helpers/currency";
+import { CartProductsList } from "../types/cart";
+import { ID } from "../types/global";
+import { Product } from "../types";
 
 export function CartProvider({ children }: PropsWithChildren) {
-  const [products, setProducts] = useState<CartProduct[]>([]);
+  const [products, setProducts] = useState<CartProductsList>({});
   const [orderId, setOrderId] = useState<ID>();
   const [isLoading, setLoading] = useState<boolean>(true);
   const [isFetching, setFetching] = useState<boolean>(false);
   const [isSubmiting, setSubmiting] = useState<boolean>(false);
 
-  const totalPrice = useMemo(
-    () =>
-      products.reduce((acc, curr) => {
-        return acc + (curr.promotionalPrice || curr.price) * curr.quantity;
-      }, 0),
-    [products]
-  );
+  const totalPrice = 0;
 
   const add = useCallback(
     (product: Product) => {
-      setProducts([
+      if (products[product.id]) return;
+
+      setProducts({
         ...products,
-        {
-          ...product,
+        [product.id]: {
           quantity: 1,
+          price: product.price,
+          promotionalPrice: product.promotionalPrice,
         },
-      ]);
+      });
     },
     [products]
   );
@@ -56,19 +52,28 @@ export function CartProvider({ children }: PropsWithChildren) {
 
   const updateQuantity = useCallback(
     (id: ID, quantity: number) => {
-      setProducts(
-        products.map((product) =>
-          product.id === id ? { ...product, quantity } : product
-        )
-      );
+      setProducts({
+        ...products,
+        [id]: {
+          ...products[id],
+          quantity,
+        },
+      });
     },
     [products]
   );
 
   const remove = useCallback(
-    (productId: ID) => {
+    (id: ID) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      setProducts(products.filter((product) => product.id !== productId));
+      setProducts(
+        Object.keys(products)
+          .filter((key) => key !== id)
+          .reduce((obj, key) => {
+            obj[key] = products[key];
+            return obj;
+          }, {} as CartProductsList)
+      );
     },
     [products]
   );

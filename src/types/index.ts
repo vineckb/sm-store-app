@@ -1,4 +1,4 @@
-export type ID = string | number;
+import { ID } from "./global";
 
 export interface CartProduct extends Product {
   quantity: number;

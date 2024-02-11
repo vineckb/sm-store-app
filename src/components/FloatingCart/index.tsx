@@ -4,9 +4,18 @@ import { useCart } from "../../hooks/useCart";
 import config from "../../config";
 import { navigate } from "../../services/navigator";
 import { formatCurrency } from "../../helpers/currency";
+import React from "react";
 
 export function FloatingCart() {
-  const { totalPrice, products } = useCart();
+  const { products } = useCart();
+
+  const totalPrice = React.useMemo(() => {
+    return Object.keys(products)
+      .map((id) => products[id])
+      .reduce((acc, curr) => {
+        return acc + (curr.promotionalPrice || curr.price) * curr.quantity;
+      }, 0) as number;
+  }, [products]);
 
   if (!Object.keys(products).length) return null;
 

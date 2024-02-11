@@ -4,14 +4,9 @@ import { Button } from "./styles";
 
 export interface AddToCartButtonProps {
   product: Product;
+  onPress: () => void;
 }
 
-export function AddToCartButton({ product }: AddToCartButtonProps) {
-  const { add } = useCart();
-
-  function handlePress() {
-    add(product);
-  }
-
-  return <Button onPress={handlePress}>COMPRAR</Button>;
+export function AddToCartButton({ product, onPress }: AddToCartButtonProps) {
+  return <Button onPress={onPress}>COMPRAR</Button>;
 }

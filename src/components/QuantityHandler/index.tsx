@@ -2,22 +2,27 @@ import { Input } from "native-base";
 import { Button, Wrapper } from "./styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import config from "../../config";
-import { ID } from "../../types";
 import { useCart } from "../../hooks/useCart";
+import { ID } from "../../types/global";
 
 export interface QuantityHandlerProps {
   productId: ID;
   quantity: number;
+  onUpdate: (quantity: number) => void;
 }
 
-export function QuantityHandler({ productId, quantity }: QuantityHandlerProps) {
+export function QuantityHandler({
+  productId,
+  quantity,
+  onUpdate,
+}: QuantityHandlerProps) {
   const { updateQuantity } = useCart();
 
   function handleRemove() {
-    updateQuantity(productId, quantity - 1);
+    onUpdate(quantity - 1);
   }
   function handleAdd() {
-    updateQuantity(productId, quantity + 1);
+    onUpdate(quantity + 1);
   }
 
   return (
